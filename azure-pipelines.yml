@@ -25,16 +25,8 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/' 
-    includeRootFolder: true 
-    archiveType: 'zip'
-    archiveFile: '$(WorkingDir)/Builds/Build.zip'
-    replaceExistingArchive: true 
-
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(WorkingDir)/Builds/Build.zip'
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'BuildOutput'
 
